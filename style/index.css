@@ -1,3 +1,52 @@
 .myTable {
-    color: red;
+  width: 100%;
+}
+.myTable > table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.myTable-thead {
+  width: 100%;
+  background: rgba(230, 230, 230, 1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+.myTable-tbody {
+  width: 100%;
+  background: rgba(250, 250, 250, 1);
+}
+.myTable-tr {
+  width: 100%;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+}
+.myTable-th {
+  text-align: left;
+  padding: 10px;
+  color: rgba(50, 50, 50, 1);
+  border-top: 3px solid transparent;
+  cursor: pointer;
+}
+.myTable-td {
+  text-align: left;
+  padding: 10px;
+  color: rgba(80, 80, 80, 1);
+}
+.myTable-th-div {
+  display: flex;
+  align-items: center;
+}
+.sort-arrow {
+  color: rgba(100, 100, 100, 1);
+  font-size: 8;
+  letter-spacing: 2px;
+  margin-left: 5px;
+  transform: rotate(90deg) scaleY(2.3);
+  text-align: center;
+  width: 12px;
+}
+.sorted-col {
+  color: #a2c07c;
+  border-top: 3px solid #a2c07c;
+}
+.sorted-col > div > span {
+  color: #a2c07c !important;
 }
