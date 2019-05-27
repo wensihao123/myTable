@@ -7,40 +7,54 @@ interface IProps {
 
 interface IState {
   sortKey: string;
-  sortState: number;
-  showRow: object[];
+  sortStatus: 'ASC' | 'DESC' | 'DEFAULT';
+  showRow: IProps['rows'];
 }
 class MyTable extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
       sortKey: '',
-      sortState: 0,
+      sortStatus: 'DEFAULT',
       showRow: this.props.rows,
     };
   }
 
+  getNextStatus = () => {
+    switch (this.state.sortStatus) {
+      case 'ASC':
+        return 'DESC';
+      case 'DESC':
+        return 'DEFAULT';
+      default:
+        return 'ASC';
+    }
+  };
+
   private handleSort = (sortKey: string) => {
-    if (this.state.sortState === 2 && this.state.sortKey === sortKey)
-      this.setState({ sortKey: '', sortState: 0, showRow: this.props.rows });
-    else {
+    if (this.state.sortStatus === 'DESC' && this.state.sortKey === sortKey) {
+      this.setState({
+        sortKey: '',
+        sortStatus: this.getNextStatus(),
+        showRow: this.props.rows,
+      });
+    } else {
       const nextSortState =
-        this.state.sortKey !== sortKey ? 1 : this.state.sortState + 1;
-      let nextShowRow: object[] = [];
-      this.state.showRow.forEach(row => nextShowRow.push(row));
+        this.state.sortKey !== sortKey ? 'ASC' : this.getNextStatus();
+      const nextShowRow = Array.from(this.state.showRow);
       nextShowRow.sort((rowA, rowB) => {
-        if (nextSortState === 1)
-          return typeof rowA[sortKey] === 'number'
-            ? rowA[sortKey] - rowB[sortKey]
-            : rowA[sortKey].localeCompare(rowB[sortKey]);
-        else
-          return typeof rowA[sortKey] === 'number'
-            ? rowB[sortKey] - rowA[sortKey]
-            : rowB[sortKey].localeCompare(rowA[sortKey]);
+        const [a, b] =
+          nextSortState === 'ASC'
+            ? [rowA[sortKey], rowB[sortKey]]
+            : [rowB[sortKey], rowA[sortKey]];
+
+        return typeof a === 'number'
+          ? a - (b as number)
+          : a.localeCompare(b as string);
       });
       this.setState({
         sortKey: sortKey,
-        sortState: nextSortState,
+        sortStatus: nextSortState,
         showRow: nextShowRow,
       });
     }
@@ -48,8 +62,9 @@ class MyTable extends React.Component<IProps, IState> {
 
   render() {
     const { columns } = this.props;
-    const { showRow, sortKey, sortState } = this.state;
-    const sortArrow = sortState === 0 ? '<>' : sortState === 1 ? '<' : '>';
+    const { showRow, sortKey, sortStatus } = this.state;
+    const sortArrow =
+      sortStatus === 'DEFAULT' ? '<>' : sortStatus === 'ASC' ? '<' : '>';
     return (
       <div className="myTable">
         <table>
@@ -58,7 +73,7 @@ class MyTable extends React.Component<IProps, IState> {
               {columns.map(col => (
                 <th
                   className={
-                    'myTable-th ' + (sortKey === col.key ? 'sorted-col' : '')
+                    'myTable-th' + (sortKey === col.key ? ' sorted-col' : '')
                   }
                   key={col.key}
                   onClick={() => this.handleSort(col.key)}
