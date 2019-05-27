@@ -1,15 +1,14 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 
-import PropTypes from 'prop-types';
-
-const Table = () => (
+const MyTable = () => (
   <div className="myTable">
     <div>TODO: replace your implementation here</div>
     <div>Feel free to break your component into small piece if necessary</div>
   </div>
 );
 
-Table.propTypes = {
+MyTable.propTypes = {
   /**
    * Table rows data.
    */
@@ -28,14 +27,14 @@ Table.propTypes = {
       /**
        * Title of column
        */
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
     })
-  )
+  ),
 };
 
-Table.defaultProps = {
+MyTable.defaultProps = {
   rows: [],
-  columns: {}
+  columns: {},
 };
 
-export default Table;
+export default MyTable;
