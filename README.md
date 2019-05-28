@@ -31,8 +31,8 @@ Package file: mytable-0.1.0.tgz
 ## Usage
 
 ```js
-import MyTable from 'MyTable';
-import 'MyTable/dist/style/index.css';
+import MyTable from 'mytable';
+import 'mytable/style/index.css';
 
 const rows = [
   {
