@@ -23,6 +23,7 @@ npm start
 ## Build Pacakge
 
 ```
+npm run build
 npm pack
 ```
 
