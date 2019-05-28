@@ -82,6 +82,7 @@ a.DESC:after {
   font-size: 14px;
 }
 .myTable-pagination > span {
+  user-select: none;
   padding: 5px;
   margin: 0 10px;
   cursor: pointer;
