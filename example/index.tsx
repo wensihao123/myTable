@@ -1,9 +1,9 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import MyTable from '../.';
+import MyTable from 'mytable';
 import { testRows1, testColumns1 } from './testTable';
-import '../style/index.css';
+import 'mytable/style/index.css';
 
 const App = () => {
 	return (
