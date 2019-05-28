@@ -13,7 +13,7 @@ npm start
 
 ## Example
 
-Under exmple folder, run
+Under example folder, run
 
 ```
 npm install
