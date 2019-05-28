@@ -20,6 +20,14 @@ npm install
 npm start
 ```
 
+## Build Pacakge
+
+```
+npm pack
+```
+
+Package file: mytable-0.1.0.tgz
+
 ## Usage
 
 ```js
