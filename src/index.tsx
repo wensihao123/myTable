@@ -55,7 +55,6 @@ class MyTable extends React.Component<IProps, IState> {
         tempRows = [];
       }
     });
-    console.log(tempRowsGroup);
     return tempRowsGroup;
   };
 
@@ -95,7 +94,6 @@ class MyTable extends React.Component<IProps, IState> {
       parseInt(value, 0).toString() === 'NaN'
         ? ''
         : parseInt(value, 0).toString();
-    console.log(newText);
     this.setState({
       inputString: newText,
       inputValue: parseInt(value, 0) || 1,
